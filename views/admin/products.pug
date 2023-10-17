@@ -1,0 +1,39 @@
+include ../layouts/mainLayout.pug
+br
+table.table
+    thead
+        tr
+            th(scope='col') Sıralama
+            th(scope='col') Ürün resmi
+            th(scope='col') Ürün Adı
+            th(scope='col') Ürün Açıklaması
+            th(scope='col') Fiyat
+            th(scope='col')
+    tbody
+        if products.length > 0
+            each product in products
+                tr
+                    th(scope='row') #{product._id}
+                    td #{product.imageUrl}
+                    td #{product.name}
+                    td !{product.description}
+                    td #{product.price}
+                    td
+                        a(href=`/admin/edit-product/${product._id}`)
+                            button.btn.btn-outline-primary(type='submit') Düzenle
+                        form(action=`/admin/delete-product` method='POST') 
+                            input(type="hidden" name="_csrf" value=`${csrfToken}`)
+                            input(type="hidden" name='productid' value=`${product._id}`)
+                            button.btn.btn-danger.btn-sm(type='submit') Ürünü Sil   
+
+        else 
+            tr
+                td(colspan='5')
+                    h1 ürün yok
+
+if (action !== 'undefined' && action === 'update')
+    div.alert.alert-succes.col-sm-7 Ürün Güncellendi!
+
+if (action !== 'undefined' && action === 'delete')
+    div.alert.alert-danger.col-sm-7 Ürün Silindi!
+    

@@ -1,0 +1,15 @@
+mixin createProduct(product)
+  .product-item
+    .card(style='width: 18rem;')
+      img.card-img-top(src=`/img/${product.imageUrl}` alt='...')
+      .card-body
+        h5.card-title
+          a(href=`/details/${product._id}`) #{product.name}
+        p.card-text !{product.description}
+        p.card-text #{product.price}
+        a.btn.btn-primary(href=`/details/${product._id}` style="margin-right:20px")
+          i.bi.bi-arrow-right
+            | Detaylar  
+        a.btn.btn-primary(href=`/cart/add-cart/${product._id}`)
+          i.bi.bi-cart-fill
+            | Sepete Ekle

@@ -1,0 +1,15 @@
+include ../layouts/mainLayout.pug
+
+.center-card
+    .card(style='width: 18rem;')
+        img.card-img-top(src=`/img/${product.imageUrl}` alt='...')
+        .card-body
+            h5.card-title #{product.name}
+            p.card-text
+                | #{product.description}
+            p.card-text
+                | #{product.price}
+            a.btn.btn-primary(href=`/cart/add-cart/${product._id}`)
+                i.bi.bi-cart-fill
+                    |  Sepete Ekle
+

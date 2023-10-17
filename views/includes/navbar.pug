@@ -1,0 +1,38 @@
+nav.navbar.navbar-expand-lg.bg-body-tertiary
+  .container-fluid(style="background-color:#ded2b1")
+    a.navbar-brand(href='/') Market
+    button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    .collapse.navbar-collapse#navbarSupportedContent
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        li.nav-item
+          a.nav-link.active(aria-current='page' href='/') Anasayfa
+        if role == 'seller'
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false') Admin İşlemleri
+            ul.dropdown-menu
+              li
+                a.dropdown-item(href='/admin/product-list') Ürünler
+              li
+                hr.dropdown-divider
+              li
+                a.dropdown-item(href='/admin/add-product') Ürün Ekle
+              li
+                hr.dropdown-divider
+              li
+                a.dropdown-item(href='/order/get-sales') Satışlar
+        li.nav-item.dropdown
+          a.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false') Profil
+          ul.dropdown-menu
+            li
+              a.dropdown-item(href='/order/get-user-order') Siparişler
+        li.nav-item
+          a.nav-link.active(aria-current='page' href='/cart/get-cart') Sepet
+        if (!isAuthenticated) 
+          li.nav-item
+            a.nav-link.active(aria-current='page' href='/account/login') Giriş Yap
+          li.nav-item
+            a.nav-link.active(aria-current='page' href='/account/register') Kayıt Ol
+        else 
+          li.nav-item
+            a.nav-link.active(aria-current='page' href='/account/logout') Çıkış Yap

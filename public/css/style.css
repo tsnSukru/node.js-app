@@ -1,0 +1,27 @@
+.center-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.container {
+  /* Flexbox kullanarak içerikleri yatay olarak düzenle */
+  display: flex;
+  /* Eğer yer sıkıntısı yaşanırsa, kartları alt satıra at */
+  flex-wrap: wrap;
+  /* Kartları aralarında eşit boşluk bırakarak düzenle */
+  justify-content: space-between;
+}
+
+.product-item {
+  /* Her satıra 3 ürün sığdır, aralarında 10px boşluk */
+  flex: 0 0 calc(33.33% - 10px);
+  /* Kartlar arasında alt boşluk bırak */
+  margin-bottom: 20px;
+}
+
+.cart-item {
+  border: 2px;
+}

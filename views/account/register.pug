@@ -1,0 +1,15 @@
+include ../layouts/mainLayout.pug
+
+form(action='/account/register' method='POST')
+    input(type="hidden" name="_csrf" value=`${csrfToken}`)
+    .input-group.input-group-sm.mb-3
+        span#inputGroup-sizing-sm.input-group-text Kullanıcı Adı
+        input.form-control(type='text' name='name' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm')
+    .input-group.input-group-sm.mb-3
+        span#inputGroup-sizing-sm.input-group-text Email
+        input.form-control(type='text' name='email' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm')
+    .input-group.input-group-sm.mb-3
+        span#inputGroup-sizing-sm.input-group-text Şifre
+        input.form-control(type='text' name='password' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm')
+
+    button.btn.btn-primary(type='submit') Giriş Yap

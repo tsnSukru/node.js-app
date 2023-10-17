@@ -1,0 +1,32 @@
+include ../layouts/mainLayout.pug
+
+form(action='/admin/edit-product' method='POST' enctype="multipart/form-data")
+  input(type="hidden" name="_csrf" value=`${csrfToken}`)
+  .input-group.input-group-sm.mb-3
+    input.form-control(type='hidden' name="id" aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm' value=`${product._id}`)
+  .input-group.input-group-sm.mb-3
+    span#inputGroup-sizing-sm.input-group-text Ürün adı
+    input.form-control(type='text' name="name" aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm' value=`${product.name}`)
+  .input-group.input-group-sm.mb-3
+    span.input-group-text Ürün detayları
+    textarea.form-control(id="editor" type='text' name='description' aria-label='With textarea') #{product.description}
+  .input-group.mb-3
+    span#inputGroup-sizing-sm.input-group-text Resim
+    input#inputGroupFile02.form-control(type='file' name='imageUrl' value=`${product.imageUrl}` accept='image/*' multerFilepond='image')
+  .input-group.input-group-sm.mb-3
+    span#inputGroup-sizing-sm.input-group-text Fiyat
+    input.form-control(type='text' name="price" aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm' value=`${product.price}`)
+  .input-group.row
+    label(for="categoryId").col-sm-2.col-form-label Kategori 
+      .col-sm-10
+        select.form-control#categoryId(name="categoryId")
+          option(value="-1") Kategori Seç
+          if categories.length > 0
+            each category in categories
+              option(value=`${category._id}`, selected=product.category.equals(category._id)) #{category.name}
+
+  button.btn.btn-primary(type='submit' style="margin-top:10px") Düzenle
+
+block script 
+  script(src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js")
+  script(src="/js/script.js")

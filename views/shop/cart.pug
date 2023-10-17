@@ -1,0 +1,26 @@
+include ../layouts/mainLayout.pug
+
+div
+  if cartItems.length === 0
+    p Sepetiniz boş.
+  else
+    ol
+      each cartItem in cartItems
+        li
+          div(style="margin: 50px 50px 50px 50px; border-style:solid; border-width: 1px;")
+            img(src=`/img/${cartItem.product.imageUrl}`, style="width:150px;")
+            h2= cartItem.product.name
+            p Fiyat: #{cartItem.product.price} TL
+            p Miktar: #{cartItem.quantity}
+            form(action='/cart/delete-item' method='POST')
+              input(type="hidden" name="_csrf" value=`${csrfToken}`)
+              input(type='hidden' name='productId', value=cartItem.product._id)
+              button.btn.btn-danger.btn-sm(type='submit') Ürünü Sil
+            form(action='/order/create-order' method='POST')
+              input(type="hidden" name="_csrf" value=`${csrfToken}`)
+              input(type='hidden' name='productId', value=cartItem.product._id)
+              input(type='hidden' name='quantity', value=cartItem.quantity)
+              button.btn.btn-success.btn-sm(type='submit') Sipariş Ver
+    a.btn.btn-primary(href=`/order/creat-multiple-order` style="margin-right:10px")
+      i.bi.bi-arrow-right
+        | Alışverişi Tamamla

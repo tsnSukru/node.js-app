@@ -1,0 +1,13 @@
+include ../layouts/mainLayout.pug
+if errorMessage 
+    div.alert.alert-danger.col-sm-7 #{errorMessage}
+form(action='/account/login' method='POST')
+    input(type="hidden" name="_csrf" value=`${csrfToken}`)
+    .input-group.input-group-sm.mb-3
+        span#inputGroup-sizing-sm.input-group-text Email
+        input.form-control(type='text' name='email' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm')
+    .input-group.input-group-sm.mb-3
+        span#inputGroup-sizing-sm.input-group-text Şifre
+        input.form-control(type='text' name='password' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm')
+
+    button.btn.btn-primary(type='submit') Giriş Yap

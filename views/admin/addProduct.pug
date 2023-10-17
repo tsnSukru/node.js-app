@@ -1,0 +1,31 @@
+include ../layouts/mainLayout.pug
+
+if errorMessage 
+  div.alert.alert-danger.col-sm-7 !{errorMessage}
+form(action='/admin/add-product' method='POST' enctype="multipart/form-data")
+  input(type="hidden" name="_csrf" value=`${csrfToken}`)
+  .input-group.input-group-sm.mb-3
+    span#inputGroup-sizing-sm.input-group-text Ürün adı
+    input.form-control(type='text' name='name' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm')
+  .input-group.input-group-sm.mb-3
+    span.input-group-text Ürün detayları
+    textarea.form-control(id="editor" name='description' aria-label='With textarea')
+  .input-group.mb-3
+    span#inputGroup-sizing-sm.input-group-text Resim
+    input#inputGroupFile02.form-control(type='file' name='imageUrl' accept='image/*' multerFilepond='image')
+  .input-group.input-group-sm.mb-3
+    span#inputGroup-sizing-sm.input-group-text Fiyat
+    input.form-control(type='text' name='price' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm')
+  .input-group.row
+    label(for="categoryId").col-sm-2.col-form-label Kategori 
+      .col-sm-10
+        select.form-control#categoryId(name="categoryId")
+          option(value="-1") Kategori Seç
+          if categories.length > 0
+            each category in categories
+              option(value=`${category.id}`) #{category.name}
+  button.btn.btn-primary(type='submit') Ekle
+
+block script 
+  script(src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js")
+  script(src="/js/script.js")

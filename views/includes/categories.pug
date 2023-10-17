@@ -1,0 +1,7 @@
+ul.nav.nav-pills(style="background-color:#ded2b1;margin:0px")
+  if categories && categories.length > 0
+    each category in categories
+      li.nav-item
+        a.nav-link(href=`/category/${category._id}`, style="color:orange; font-size:20px") #{category.name}
+  else 
+    Kategori yok

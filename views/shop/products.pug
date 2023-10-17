@@ -1,0 +1,9 @@
+include ../mixins/productCard.pug
+include ../layouts/mainLayout.pug
+
+.container
+    if products.length > 0
+        each product in products
+            +createProduct(product)
+    else
+        h1 Ürün yok.
